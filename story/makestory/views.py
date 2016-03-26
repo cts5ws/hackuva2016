@@ -41,9 +41,9 @@ def output(request):
             # currently just the list of matched words
             text_output = class_list.__str__()
             
-            #Parts of speech recognition
+            # Parts of speech recognition
             tokens = nltk.word_tokenize(class_str)
-            assignment = pos_tag(tokens)
+            assignment = pos_tag(tokens, tagset='universal')
             nouns = []
             verbs = []
             adjectives = []
@@ -53,7 +53,7 @@ def output(request):
                 assignment = tuple[1]
                 if assignment == 'NN' or assignment == 'NNS':
                     nouns.append(word)
-                elif assignment == 'VBD' or word[-3:] == 'ing':
+                elif assignment == 'VBD':
                     verbs.append(word)
                 elif assignment == 'JJ':
                     adjectives.append(word)
