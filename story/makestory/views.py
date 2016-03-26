@@ -51,9 +51,9 @@ def output(request):
             for tuple in assignment:
                 word = tuple[0]
                 assignment = tuple[1]
-                if assignment == 'NN' or assignment == 'NNS' or assignment == 'VBG':
+                if assignment == 'NN' or assignment == 'NNS':
                     nouns.append(word)
-                elif assignment == 'VBD':
+                elif assignment == 'VBD' or word[-3:] == 'ing':
                     verbs.append(word)
                 elif assignment == 'JJ':
                     adjectives.append(word)
