@@ -24,6 +24,7 @@
 		    <p>Insert an image URL below:</p>
 		    
 		    <form action="process/" method="POST">
+		    	{% csrf token %}
 		        <input type="text" name="inputURL">
 		    </form>
 		    

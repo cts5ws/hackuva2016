@@ -55,8 +55,8 @@ def process(request):
                     adjectives.append(word)
                 else:
                     otherPos.append(word)
-            
-            story =''
+
+            story = ''
             
             
             image_output = imageURL
