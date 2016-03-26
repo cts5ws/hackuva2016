@@ -1,4 +1,4 @@
-from clarifai.client import ClarifaiApi
+from client import ClarifaiApi
 import json
 
 def process_picture(url):
