@@ -1,5 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from makestory.models import Image
 
 # Create your views here.
 def index(request):
@@ -9,7 +10,8 @@ def process(request):
     if request.method == "GET":
         if 'inputURL' in request.GET:
             imageURL = request.GET['inputURL']
-            
+            image = Image(image_url=imageURL)
+            image.save()
         else:
             return index(request)
     return fail(request)
