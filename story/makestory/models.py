@@ -6,7 +6,7 @@ import os, urllib
 
 # Create your models here.
 class Image(models.Model):
-    image_file = models.ImageField(upload_to='images')
+    image_file = models.FileField(upload_to='images/')
     image_url = models.URLField()
     
 def get_remote_image(self):
