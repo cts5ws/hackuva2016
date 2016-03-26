@@ -7,8 +7,12 @@ def index(request):
     
 def process(request):
     if request.method == "GET":
-        return render(request, 'makestory/fail.html')
-    return render(request, 'makestory/index.html')
+        if 'inputURL' in request.GET:
+            imageURL = request.GET['inputURL']
+            
+        else:
+            return index(request)
+    return fail(request)
     
 def output(request):
     return render(request, 'makestory/index.html')
