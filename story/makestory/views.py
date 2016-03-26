@@ -1,6 +1,8 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from clarifai.client import ClarifaiApi
+import nltk
+from nltk import pos_tag
 import json
 
 # Create your views here.
@@ -9,11 +11,11 @@ def index(request):
     
 def process(request):
     # Validation of form
-    if request.method == "GET":
+    if request.method == "POST":
         # Validation of request
-        if 'inputURL' in request.GET:
+        if 'inputURL' in request.POST:
             # Validation of image url
-            imageURL = request.GET['inputURL']
+            imageURL = request.POST.get('inputURL')
             indexOfDot = imageURL.rfind(".")
             if indexOfDot == -1:
                 return fail(request) # not an image URL
@@ -31,13 +33,29 @@ def process(request):
             class_list = result['results'][0]['result']['tag']['classes']
             prob_list = result['results'][0]['result']['tag']['probs']
             
+            class_str = ""
+            for i in range(0, len(class_list)):
+                class_str += class_list[i] + " " 
+            
             # currently just the list of matched words
             text_output = class_list.__str__()
             
             # Parts of speech recognition
-            nouns = []
-            verbs = []
-            otherPos = []
+            tokens = nltk.word_tokenize(class_str)
+            assignment = pos_tag(tokens)
+            nouns = [], verbs = [], adjectives = [], otherPos = []
+            for tuple in assignment:
+                word = tuple[0]
+                assignment = tuple[1]
+                if assignment == 'NN' or assignment == 'NNS' or assignment == 'VBG':
+                    nouns.append(word)
+                elif assignment == 'VBD':
+                    verbs.append(word)
+                elif assignment == 'JJ':
+                    adjectives.append(word)
+                else:
+                    otherPos.append(word)
+            
             story =''
             
             
@@ -46,6 +64,7 @@ def process(request):
                 {
                 'nouns_output': nouns,
                 'verbs_output': verbs,
+                'adjectives_output': adjectives,
                 'otherPos_output': otherPos,
                 'imageURL_output': imageURL,
                 'story_output': story
