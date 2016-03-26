@@ -6,5 +6,7 @@ def index(request):
     return render(request, 'makestory/index.html')
     
 def process(request):
+    return render(request, 'makestory/index.html')
     
 def output(request):
+    return render(request, 'makestory/index.html')
