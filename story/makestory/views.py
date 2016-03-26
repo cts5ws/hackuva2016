@@ -22,16 +22,20 @@ def process(request):
             if extension != 'jpg' and extension != 'jpeg' and extension != 'png':
                 return fail(request) # not a valid image (jpg, jpeg, png)
                 
-            clarifai_api = ClarifaiApi() # assumes environment variables are set.
+            client_id = '8SkASX_SM8xc-fxMF4SdpzS_b9uew8yG0UrQp0y6'
+            secret_id = 'pFAl0NX6hGINRLrQT3XhjI6D3UIUtyt3axeVH6v9'
+                
+            clarifai_api = ClarifaiApi(client_id, secret_id) # assumes environment variables are set.
             result = clarifai_api.tag_image_urls(imageURL)
             
             class_list = result['results'][0]['result']['tag']['classes']
             prob_list = result['results'][0]['result']['tag']['probs']
             
-            #currently just the list of matched words
+            # currently just the list of matched words
             text_output = class_list.__str__()
             
             image_output = imageURL
+            text_output = 
             return render(request, 'makestory/output.html', {image_output:'image_output', text_output:'text_output'})
         else:
             return index(request)
