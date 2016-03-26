@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from clarifai.client import ClarifaiApi
 import nltk
+from PyDictionary import PyDictionary
 from nltk import pos_tag
 import json
 
@@ -43,19 +44,24 @@ def output(request):
             
             # Parts of speech recognition
             tokens = nltk.word_tokenize(class_str)
-            assignment = pos_tag(tokens, tagset='universal')
+            dictionary = PyDictionary()
+            
+            
+            #assignment = pos_tag(tokens, tagset='universal') # universal gives us 'ADJ', 'NOUN', etc.
             nouns = []
             verbs = []
             adjectives = []
             otherPos = []
-            for tuple in assignment:
-                word = tuple[0]
-                assignment = tuple[1]
-                if assignment == 'NN' or assignment == 'NNS':
+            for word in tokens:
+                definition = dictionary.meaning(word) # https://pypi.python.org/pypi/PyDictionary/1.3.4
+                assignment = definition.keys()[0] # Get the part of speech from the dictonary
+                
+                #assignment = tuple[1]
+                if assignment == 'Noun':
                     nouns.append(word)
-                elif assignment == 'VBD':
+                elif assignment == 'Verb':
                     verbs.append(word)
-                elif assignment == 'JJ':
+                elif assignment == 'Adjective':
                     adjectives.append(word)
                 else:
                     otherPos.append(word)
