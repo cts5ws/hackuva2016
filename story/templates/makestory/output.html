@@ -19,15 +19,44 @@
 	<body>
 		<div class="container" align="center">
 		    <h1>Here's a story.</h1>
-            <p class="lead">
-		        <img src="{{ imageURL_output }}" />
-		        
-		        <br />
-		        {{ text_output }} 
-		        
-            </p>
-            <p>{{ caption_output }}</p>
-            <p>{{ story_output }} </p>
+		    
+		    <p>Image:</p>
+		    <img src="{{ imageURL_output }}" />
+		    
+		    <p>Nouns:</p>
+		    <ul>
+		        {% for noun in nouns_output %}
+		        <li>{{ noun }}</li>
+		        {% endfor %}
+		    </ul>
+		    
+		    <p>Verbs:</p>
+		    <ul>
+		        {% for verb in verbs_output %}
+		        <li>{{ verb }}</li>
+		        {% endfor %}
+		    </ul>
+		    
+		    <p>Adjectives:</p>
+		    <ul>
+		        {% for adj in adjectives_output %}
+		        <li>{{ adj }}</li>
+		        {% endfor %}
+		    </ul>
+		    
+		    <p>Other:</p>
+		    <ul>
+		        {% for other in otherPos_output %}
+		        <li>{{ other }}</li>
+		        {% endfor %}
+		    </ul>
+		    
+		    <p>Caption:</p>
+		    <p>{{ caption_output }}</p>
+		    
+		    <p>Story:</p>
+		    <p>{{ story_output }}</p>
+		    
     	</div> <!-- /container -->
 	</body>
 </html>

@@ -72,7 +72,6 @@ def output(request):
                 'imageURL_output': imageURL,
                 'caption_output': caption,
                 'story_output': story,
-                'text_output' : text_output,
                 }
             )
         else:
