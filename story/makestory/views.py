@@ -44,11 +44,11 @@ def process(request):
             image_output = imageURL
             return render(request, 'makestory/output.html',
                 {
-                nouns:'nouns_output',
-                verbs:'verbs_output',
-                otherPos:'otherPos_output',
-                imageURL:'imageURL_output',
-                story:'story_output',
+                'nouns_output': nouns,
+                'verbs_output': verbs,
+                'otherPos_output': otherPos,
+                'imageURL_output': imageURL,
+                'story_output': story
                 }
             )
         else:
