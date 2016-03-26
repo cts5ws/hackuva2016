@@ -9,7 +9,7 @@ import json
 def index(request):
     return render(request, 'makestory/index.html')
     
-def process(request):
+def output(request):
     # Validation of form
     if request.method == "POST":
         # Validation of request
@@ -59,10 +59,11 @@ def process(request):
                 else:
                     otherPos.append(word)
 
+            caption = ''
             story = ''
             
-            
             image_output = imageURL
+            
             return render(request, 'makestory/output.html',
                 {
                 'nouns_output': nouns,
@@ -70,11 +71,12 @@ def process(request):
                 'adjectives_output': adjectives,
                 'otherPos_output': otherPos,
                 'imageURL_output': imageURL,
-                'story_output': story
+                'caption_output': caption,
+                'story_output': story,
                 }
             )
         else:
-            return index(request)
+            return fail(request)
     return fail(request)
     
 def output(request):
