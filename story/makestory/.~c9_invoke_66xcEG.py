@@ -6,12 +6,8 @@ def index(request):
     return render(request, 'makestory/index.html')
     
 def process(request):
-    if request.method == "GET":
-        return render(request, 'makestory/fail.html')
+    k
     return render(request, 'makestory/index.html')
-    
+    retu
 def output(request):
     return render(request, 'makestory/index.html')
-    
-def output(request):
-    return render(request, 'makestory/fail.html')
