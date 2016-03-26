@@ -14,7 +14,9 @@ def process(request):
         if 'inputURL' in request.GET:
             # Validation of image url
             imageURL = request.GET['inputURL']
-            indexOfDot = rfind(".")
+            indexOfDot = imageURL.rfind(".")
+            if indexOfDot == -1:
+                return fail(request) # not an image URL
             indexOfDot += 1
             extension = imageURL[indexOfDot:]
             if extension != 'jpg' and extension != 'jpeg' and extension != 'png':
