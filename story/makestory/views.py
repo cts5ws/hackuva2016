@@ -16,6 +16,7 @@ def output(request):
         if 'inputURL' in request.POST:
             # Validation of image url
             imageURL = request.POST.get('inputURL')
+            image_output = imageURL
             indexOfDot = imageURL.rfind(".")
             if indexOfDot == -1:
                 return fail(request) # not an image URL
@@ -61,8 +62,6 @@ def output(request):
 
             caption = ''
             story = ''
-            
-            image_output = imageURL
             
             return render(request, 'makestory/output.html',
                 {
