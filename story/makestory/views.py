@@ -38,16 +38,17 @@ def process(request):
             nouns = []
             verbs = []
             otherPos = []
+            story =''
             
             
             image_output = imageURL
             return render(request, 'makestory/output.html',
                 {
-                nouns_output:'nouns',
-                verbs_output:'verbs',
-                otherPos_output:'otherPos',
-                image_output:'imageURL',
-                story_output:'story',
+                nouns:'nouns_output',
+                verbs:'verbs_output',
+                otherPos:'otherPos_output',
+                imageURL:'imageURL_output'
+                story:'story_output',
                 }
             )
         else:
