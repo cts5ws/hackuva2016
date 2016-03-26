@@ -40,21 +40,24 @@ def process(request):
             # currently just the list of matched words
             text_output = class_list.__str__()
             
-            # Parts of speech recognition
-            #tokens = nltk.word_tokenize(class_str)
-            #assignment = pos_tag(tokens)
-            nouns = [], verbs = [], adjectives = [], otherPos = []
-            # for tuple in assignment:
-            #     word = tuple[0]
-            #     assignment = tuple[1]
-            #     if assignment == 'NN' or assignment == 'NNS' or assignment == 'VBG':
-            #         nouns.append(word)
-            #     elif assignment == 'VBD':
-            #         verbs.append(word)
-            #     elif assignment == 'JJ':
-            #         adjectives.append(word)
-            #     else:
-            #         otherPos.append(word)
+            #Parts of speech recognition
+            tokens = nltk.word_tokenize(class_str)
+            assignment = pos_tag(tokens)
+            nouns = []
+            verbs = []
+            adjectives = []
+            otherPos = []
+            for tuple in assignment:
+                word = tuple[0]
+                assignment = tuple[1]
+                if assignment == 'NN' or assignment == 'NNS' or assignment == 'VBG':
+                    nouns.append(word)
+                elif assignment == 'VBD':
+                    verbs.append(word)
+                elif assignment == 'JJ':
+                    adjectives.append(word)
+                else:
+                    otherPos.append(word)
 
             story = ''
             
