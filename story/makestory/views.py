@@ -47,7 +47,7 @@ def process(request):
                 nouns:'nouns_output',
                 verbs:'verbs_output',
                 otherPos:'otherPos_output',
-                imageURL:'imageURL_output'
+                imageURL:'imageURL_output',
                 story:'story_output',
                 }
             )
