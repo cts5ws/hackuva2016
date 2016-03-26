@@ -6,5 +6,4 @@ urlpatterns = [
     url(r'^process/', views.process, name='process'),
     url(r'^output/', views.output, name='output'),
     url(r'^fail/', views.fail, name='fail'),
-    
 ]
