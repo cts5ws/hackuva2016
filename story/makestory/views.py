@@ -60,8 +60,8 @@ def output(request):
                 else:
                     otherPos.append(word)
 
-            caption = ''
-            story = ''
+            caption = 'this is a caption'
+            story = 'this is the story'
             
             return render(request, 'makestory/output.html',
                 {
@@ -72,6 +72,7 @@ def output(request):
                 'imageURL_output': imageURL,
                 'caption_output': caption,
                 'story_output': story,
+                'text_output' : text_output,
                 }
             )
         else:

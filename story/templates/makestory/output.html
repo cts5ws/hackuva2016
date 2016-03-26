@@ -20,17 +20,14 @@
 		<div class="container" align="center">
 		    <h1>Here's a story.</h1>
             <p class="lead">
-		        <img src="{{ image_output }}" />
+		        <img src="{{ imageURL_output }}" />
 		        
 		        <br />
 		        {{ text_output }} 
 		        
             </p>
-		    <p>Insert an image URL below:</p>
-		    <form action="process" type="get">
-		        <input type="text" name="inputURL">
-		    </form>
-		    
+            <p>{{ caption_output }}</p>
+            <p>{{ story_output }} </p>
     	</div> <!-- /container -->
 	</body>
 </html>
