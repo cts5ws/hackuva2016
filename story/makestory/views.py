@@ -13,5 +13,5 @@ def process(request):
 def output(request):
     return render(request, 'makestory/index.html')
     
-def output(request):
+def fail(request):
     return render(request, 'makestory/fail.html')
