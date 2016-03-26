@@ -23,7 +23,7 @@ def process(request):
                 return fail(request) # not a valid image (jpg, jpeg, png)
                 
             clarifai_api = ClarifaiApi() # assumes environment variables are set.
-            result = clarifai_api.tag_images(imageURL)
+            result = clarifai_api.tag_image_urls(imageURL)
             
             class_list = result['results'][0]['result']['tag']['classes']
             prob_list = result['results'][0]['result']['tag']['probs']
