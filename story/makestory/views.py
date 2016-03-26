@@ -12,12 +12,13 @@ def process(request):
             imageURL = request.GET['inputURL']
             image = Image(image_url=imageURL)
             image.save()
+            return output(request)
         else:
             return index(request)
     return fail(request)
     
 def output(request):
-    return render(request, 'makestory/index.html')
+    return render(request, 'makestory/output.html')
     
 def fail(request):
     return render(request, 'makestory/fail.html')
