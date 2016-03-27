@@ -90,6 +90,10 @@ def output(request):
             
             # pos_tags = []
             pos_words = {}
+            pos_words['DET'] = DET
+            pos_words['P'] = P
+            pos_words['VB'] = VB
+            
             for tuple in assignments:
                 word = tuple[0]
                 pos = tuple[1]
@@ -99,10 +103,6 @@ def output(request):
                     pos_words[pos] = []
                     pos_words[pos].append("\'" + word + "\'")
                 # pos_tags.append(pos)
-                
-            pos_words['DET'] = DET
-            pos_words['P'] = P
-            
 
             grammar = """
             S -> NP VP
