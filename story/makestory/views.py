@@ -173,7 +173,6 @@ def output(request):
                 story += ". "
             
             caption = 'this is a caption'
-            story = 'this is the story'
             
             return render(request, 'makestory/output.html',
                 {
