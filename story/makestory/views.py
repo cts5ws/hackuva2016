@@ -12,7 +12,7 @@ from models import Bigram
 import sys
 
 sys.setrecursionlimit(10000)
-bool first_access = True
+first_access = True
 
 # Create your views here.
 def index(request):
