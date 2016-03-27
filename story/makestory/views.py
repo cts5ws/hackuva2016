@@ -200,9 +200,9 @@ def get_validity(sentences):
                 validity[sentence] += bigrams[0].frequency
             prev_word_loc = next_word_loc
             index += 1
-    return validity
-    
-    
+    tuple_list = [(v, k) for k, v in validity.iteritems()]
+    tuple_list.sort(key=operator.itemgetter(1))
+    return tuple_list
     
 def fail(request):
     return render(request, 'makestory/fail.html')
