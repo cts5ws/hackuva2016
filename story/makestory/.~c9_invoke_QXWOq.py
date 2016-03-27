@@ -198,8 +198,8 @@ def get_validity(sentences):
             )
             if len(bigrams) != 0:
                 validity[sentence] += bigrams[0].frequency
-            prev_word_loc = next_word_loc
             index += 1
+            prev_word = next_word
     return validity
     
     
