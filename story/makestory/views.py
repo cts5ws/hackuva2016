@@ -17,7 +17,7 @@ sys.setrecursionlimit(10000)
 def index(request):
     if len(list(Bigram.objects.all())) == 0:
         BASE = os.path.dirname(os.path.abspath(__file__))
-        f = open(os.path.join(BASE, 'w2_test.txt'), 'r')
+        f = open(os.path.join(BASE, 'w2_.txt'), 'r')
         models = []
         for line in f:
             sp = line.split() # sp[0] = freq, sp[1] = first_word, sp[2] = second_word
