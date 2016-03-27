@@ -7,6 +7,7 @@ from nltk import pos_tag, CFG
 from nltk.parse.generate import generate
 import json
 from django.contrib import messages
+from textblob import TextBlob
 import sys
 
 sys.setrecursionlimit(10000)
@@ -59,6 +60,9 @@ def output(request):
             # dictionary = PyDictionary()
             
             
+            blob = TextBlob(class_str)
+            assignments_2 = blob.tags 
+            
             # nouns = []
             # verbs = []
             # adjectives = []
@@ -88,7 +92,7 @@ def output(request):
             
             # pos_tags = []
             pos_words = {}
-            for tuple in assignments:
+            for tuple in assignments_2:
                 word = tuple[0]
                 pos = tuple[1]
                 if pos in pos_words:
