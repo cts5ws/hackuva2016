@@ -53,7 +53,7 @@ def output(request):
             prob_list = result['results'][0]['result']['tag']['probs']
             
             class_str = ""
-            for i in range(0, len(class_list)/4):
+            for i in range(0, len(class_list)/2):
                 class_str += class_list[i] + " " 
             
             # currently just the list of matched words
@@ -152,7 +152,7 @@ def output(request):
             sentences = []
             sentence_validity = []
          
-            for sentence in generate(simple_grammar, n=100):
+            for sentence in generate(simple_grammar, depth=4):
                 sentences.append(' '.join(sentence))
             
             
