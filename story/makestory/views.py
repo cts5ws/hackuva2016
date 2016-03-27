@@ -179,7 +179,7 @@ def get_validity(sentences):
     #    next_word = "at"
     #)
     #frequency = bigrams[0].frequency
-    sentences = sentences[0:10]
+    #sentences = sentences[0:10]
     
     validity = {}
     for sentence in sentences:
@@ -195,8 +195,12 @@ def get_validity(sentences):
             )
             if len(bigrams) != 0:
                 validity[sentence] += bigrams[0].frequency
-            prev_word_loc = next_word_loc
-            index += 1
+            
+            if index + 1 >= len(words):
+                break
+            
+            prev_word_loc = words[index + 1]
+            index += 2
     tuple_list = [(v, k) for k, v in validity.iteritems()]
     tuple_list = sorted(tuple_list, key=lambda x: x[0], reverse=True)
     return tuple_list
