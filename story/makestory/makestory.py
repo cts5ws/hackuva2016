@@ -4,7 +4,7 @@ from models import Bigram
 class makeStoryConfig(AppConfig):
     name = 'story'
     verbose_name = "Story Time"
-    def read(self):
+    def ready(self):
         f = open('../static/rec/w2_.txt', 'r')
     
         models = []
