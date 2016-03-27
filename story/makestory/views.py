@@ -11,6 +11,7 @@ from models import Bigram
 import os.path
 import sys
 import operator
+import random
 
 sys.setrecursionlimit(10000)
 
@@ -185,7 +186,8 @@ def get_validity(sentences):
     #    next_word = "at"
     #)
     #frequency = bigrams[0].frequency
-    sentences = sentences[0:10]
+    sentences = random.shuffle(sentences)
+    sentences sentences[0:50]
     
     validity = {}
     for sentence in sentences:
@@ -206,7 +208,7 @@ def get_validity(sentences):
                 break
             
             prev_word_loc = words[index + 1]
-            index += 2
+            index +=   2
     #tuple_list = [(v, k) for k, v in validity.iteritems()]
     #tuple_list = sorted(tuple_list, key=lambda x: x[0], reverse=True)
     return validity
