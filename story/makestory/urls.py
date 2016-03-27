@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url
-from makestory import views
+from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='input'),
