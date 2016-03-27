@@ -87,7 +87,7 @@ def output(request):
             #P:prepositions, DET:articles, adverbs
             DET = ["'the'","'a'","'some'"]
             # P = ["'in'","'at'","'since'","'for'","'to'","'past'","'to'""'by'","'in'","'at'","'on'","'under'","'below'","'over'","'above'","'into'","'from'","'of'","'on'","'at'"]
-            VB = ["'talks'","'does'","'has'","'is'", "'fights'", "'traps'", "'kills'", "'fondles'"]
+            VB = ["'talks'","'does'","'has'","'cry'", "'fights'", "'traps'", "'bakes'", "'fondles'", "''"]
             
             
             assignments = pos_tag(tokens) # tagset='universal' for ADJ, NOUN, etc.
@@ -206,14 +206,12 @@ def get_validity(sentences):
             if len(bigrams) != 0:
                 validity[sentence] += bigrams[0].frequency
             
-            if index + 1 >= len(words):
-                break
-            
-            prev_word_loc = words[index + 1]
-            index +=   2
-    #tuple_list = [(v, k) for k, v in validity.iteritems()]
-    #tuple_list = sorted(tuple_list, key=lambda x: x[0], reverse=True)
-    return validity
+            prev_word_loc = next_word_loc
+            index +=   1
+    tuple_list = [(v, k) for k, v in validity.iteritems()]
+    tuple_list = sorted(tuple_list, key=lambda x: x[0], reverse=True)
+    # return validity
+    return tuple_list
     
 def fail(request):
     return render(request, 'makestory/fail.html')
