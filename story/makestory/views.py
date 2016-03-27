@@ -145,12 +145,11 @@ def output(request):
             sentences = []
             sentence_validity = []
          
-            for sentence in generate(simple_grammar, depth=5):
+            for sentence in generate(simple_grammar, depth=3):
                 sentences.append(' '.join(sentence))
             
             
             sentence_validity = get_validity(sentences)
-            some_text_output = 0
             #get_validity(sentences)
             
             # parser = nltk.ChartParser(simple_grammar)
@@ -166,7 +165,7 @@ def output(request):
                 'story_output': story,
                 'grammar_test_output': simple_grammar,
                 'sentences_test_output': sentences,
-                'text_output': some_text_output,
+                'text_output': sentence_validity,
                 }
             )
         else:
