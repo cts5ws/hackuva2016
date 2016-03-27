@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from clarifai.client import ClarifaiApi
+from clarifai.client import ClarifaiApi, ApiError
 import nltk
 from PyDictionary import PyDictionary
 from nltk import pos_tag
@@ -30,7 +30,11 @@ def output(request):
             secret_id = 'EXkfCNxXeiHtnpsxn9Njui_yUpCuvcSAXzfSYjwN'
                 
             clarifai_api = ClarifaiApi(client_id, secret_id) # assumes environment variables are set.
-            result = clarifai_api.tag_image_urls(imageURL)
+            try:
+                result = clarifai_api.tag_image_urls(imageURL)
+            except ApiError:
+                return fail(request)
+            
             
             class_list = result['results'][0]['result']['tag']['classes']
             prob_list = result['results'][0]['result']['tag']['probs']
@@ -56,7 +60,8 @@ def output(request):
                 definition = dictionary.meaning(word) # https://pypi.python.org/pypi/PyDictionary/1.3.4
                 assignment = definition.keys()[0] # Get the part of speech from the dictonary
                 
-                #assignment = tuple[1]
+                # assignment = tuple[1]
+                
                 if assignment == 'Noun':
                     nouns.append(word)
                 elif assignment == 'Verb':
