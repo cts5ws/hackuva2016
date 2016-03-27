@@ -186,7 +186,7 @@ def get_validity(sentences):
     #    next_word = "at"
     #)
     #frequency = bigrams[0].frequency
-    sentences = random.shuffle(sentences)
+    random.shuffle(sentences)
     sentences = sentences[0:50]
     
     validity = {}
