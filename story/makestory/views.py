@@ -84,7 +84,7 @@ def output(request):
             #P:prepositions, DET:articles, adverbs
             DET = ["'the'","'a'","'one'","'some'","'few'","'a few'","'the few'","'some'"]
             P = ["'on'","'in'","'at'","'since'","'for'","'ago'","'before'","'to'","'past'","'to'","'until'","'by'","'in'","'at'","'on'","'under'","'below'","'over'","'above'","'into'","'from'","'of'","'on'","'at'"]
-            VB = ["'allow'","'call'","'damage'","'end'","'open'","'stay'","'talk'","'walk'","'work'","'yell'","'may'","'might'","'must'","'be'","'being'","'been'","'am'","'are'","'is'","'was'","'were'","'do'","'does'","'did'","'should'","'could'","'would'","'have'","'had'","'has'","'will'","'can'","'shall'","'am'","'are'","'being'","'be'","'become'","'have'","'is'","'look'","'might be'","'prove'","'seem'","'were'"]
+            VB = ["dicking","traps","fucks","'damage'","'end'","'open'","'stay'","'talk'","'walk'""'may'","'might'","'must'","'be'","'being'","'been'","'am'","'are'","'is'","'was'","'were'","'do'","'does'","'did'","'should'","'could'","'would'","'had'","'has'","'will'","'can'","'am'","'are'","'being'","'be'","'become'","'have'","'is'","'look'"]
             
             assignments = pos_tag(tokens) # tagset='universal' for ADJ, NOUN, etc.
             
