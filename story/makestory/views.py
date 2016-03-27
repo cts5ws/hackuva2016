@@ -161,7 +161,7 @@ def output(request):
             # simple_grammar.productions()
             
             sentences = []
-            sentence_validity = {}
+            sentence_validity = []
          
             for sentence in generate(simple_grammar, depth=5):
                 sentences.append(' '.join(sentence))
