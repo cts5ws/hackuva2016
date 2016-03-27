@@ -144,9 +144,9 @@ def output(request):
             sentences = []
             sentence_validity = {}
             for sentence in generate(simple_grammar, depth=5):
-                sentences.append(' '.join(sentence))
-            
-            #sentence_validity = get_validity(sentences)
+                sentences.append(' ', sentence)
+                
+            sentence_validity = get_validity(sentences)
             
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)
@@ -180,6 +180,7 @@ def get_validity(sentences):
                 next_word=word
             )
             
+            if len(bigrams) != 
             validity[sentence] += bigrams[0].frequency
     
     return validity
