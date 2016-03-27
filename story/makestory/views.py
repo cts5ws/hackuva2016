@@ -161,7 +161,7 @@ def output(request):
                 sentences.append(' '.join(sentence))
             
             
-            sentence_validity = get_validity(sentences)
+           # sentence_validity = get_validity(sentences)
             
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)
