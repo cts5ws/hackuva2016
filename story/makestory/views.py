@@ -31,7 +31,7 @@ def index(request):
             )
             for line in f
         ]
-        models.Bigram.objects.bulk_create(instances)
+        Bigram.objects.bulk_create(instances)
             # freq = int(sp[0])
             # first = sp[1]
             # second = sp[2]
