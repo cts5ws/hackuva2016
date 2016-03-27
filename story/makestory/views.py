@@ -167,7 +167,8 @@ def output(request):
                 sentences.append(' '.join(sentence))
             
             
-            sentence_validity = get_validity(sentences)
+            # sentence_validity = get_validity(sentences)
+            get_validity(stenences)
             
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)
@@ -182,6 +183,7 @@ def output(request):
                 'story_output': story,
                 'grammar_test_output': simple_grammar,
                 'sentences_test_output': sentences,
+                'text_output': some_text_output,
                 }
             )
         else:
@@ -203,12 +205,30 @@ def get_validity(sentences):
                 next_word = next_word_loc,
             )
             if len(bigrams) != 0:
-                validity[sentence] += bigrams[0].frequency
+                some_text_output = "ran and returned true somewhere"
             prev_word_loc = next_word_loc
             index += 1
-    tuple_list = [(v, k) for k, v in validity.iteritems()]
-    tuple_list.sort(key=operator.itemgetter(1))
-    return tuple_list
+    
+    
+    # validity = {}
+    # for sentence in sentences:
+    #     words = sentence.split()
+    #     prev_word_loc = words[0]
+    #     validity[sentence] = 0
+    #     index = 1
+    #     while index < len(words):
+    #         next_word_loc = words[index]
+    #         bigrams = Bigram.objects.filter(
+    #             first_word = prev_word_loc,
+    #             next_word = next_word_loc,
+    #         )
+    #         if len(bigrams) != 0:
+    #             validity[sentence] += bigrams[0].frequency
+    #         prev_word_loc = next_word_loc
+    #         index += 1
+    # tuple_list = [(v, k) for k, v in validity.iteritems()]
+    # tuple_list.sort(key=operator.itemgetter(1))
+    # return tuple_list
     
 def fail(request):
     return render(request, 'makestory/fail.html')
