@@ -144,7 +144,7 @@ def output(request):
             sentences = []
             sentence_validity = {}
          
-            sentences = generate(simple_grammar, depth=5):
+            sentences = generate(simple_grammar, depth=5)
                 
             sentence_validity = get_validity(sentences)
             
