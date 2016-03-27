@@ -103,7 +103,7 @@ def output(request):
             PP -> P NP
             NP -> Det N | Det N PP
             VP -> V NP | VP PP
-            Det -> 'DT'
+            Det -> 'DT' | 'word' | word
             """
             # N -> 'NN'
             # V -> 'VBZ'
@@ -113,23 +113,23 @@ def output(request):
             # adverb is RB
             
             if 'NN' in pos_words:
-                grammar += 'N ->' + ' | '.join(pos_words['NN']) + '\n'
+                grammar += 'N ->' + ' | '.join("\'" + pos_words['NN'] + "\'") + '\n'
             
             if 'VB' in pos_words:
-                grammar += 'V ->' + ' | '.join(pos_words['VB']) + '\n'
+                grammar += 'V ->' + ' | '.join("\'" + pos_words['VB'] + "\'") + '\n'
                 
             if 'JJ' in pos_words:
-                grammar += 'A ->' + ' | '.join(pos_words['JJ']) + '\n'
+                grammar += 'A ->' + ' | '.join("\'" + pos_words['JJ'] + "\'") + '\n'
                 
             simple_grammar = CFG.fromstring(grammar)
-            # simple_grammar.start()
-            # simple_grammar.productions()
+            #simple_grammar.start()
+            simple_grammar.productions()
             
             sentences = []
             for sentence in generate(simple_grammar, n=10):
                 sentences.append(' '.join(sentence))
-                
-            
+  
+                          
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)
             
