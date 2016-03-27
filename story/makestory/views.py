@@ -15,7 +15,7 @@ sys.setrecursionlimit(10000)
 
 # Create your views here.
 def index(request):
-    if len(list(Bigram.objects.all())) > 1:
+    if len(list(Bigram.objects.all())) == 0:
         f = open('../static/rec/w2_.txt', 'r')
         models = []
         for line in f:
