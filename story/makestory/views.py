@@ -145,7 +145,7 @@ def output(request):
             sentences = []
             sentence_validity = []
          
-            for sentence in generate(simple_grammar, depth=3):
+            for sentence in generate(simple_grammar, n=100):
                 sentences.append(' '.join(sentence))
             
             

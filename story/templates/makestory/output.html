@@ -56,6 +56,13 @@
               	{% for sentence in sentences_test_output %}
               	<li>{{ sentence }}</li>
               	{% endfor %}
+              	
+              </ul>
+              
+              <ul>
+                {% for valid in test_output %}
+                <li> {{ valid }}</li>
+                {% endfor %}
               </ul>
             </div>
 
