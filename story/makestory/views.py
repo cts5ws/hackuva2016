@@ -8,7 +8,7 @@ from nltk.parse.generate import generate
 import json
 from django.contrib import messages
 from models import Bigram
-
+import os.path
 import sys
 
 sys.setrecursionlimit(10000)
@@ -16,7 +16,8 @@ sys.setrecursionlimit(10000)
 # Create your views here.
 def index(request):
     if len(list(Bigram.objects.all())) == 0:
-        f = open('w2_.txt', 'r')
+        BASE = os.path.dirname(os.path.abspath(__file__))
+        f = open(os.path.join(BASE, 'w2_.txt'), 'r')
         models = []
         for line in f:
             sp = line.split() # sp[0] = freq, sp[1] = first_word, sp[2] = second_word
