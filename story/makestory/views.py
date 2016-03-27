@@ -35,7 +35,7 @@ def output(request):
             except ApiError:
                 #return fail(request)
                 error_type = ApiError
-                return render('fail.html', {'error_type' : error_type})
+                return redirect('fail.html', {'error_type' : error_type})
             
             
             class_list = result['results'][0]['result']['tag']['classes']
