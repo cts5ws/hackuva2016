@@ -8,6 +8,8 @@ from nltk.parse.generate import generate
 import json
 from django.contrib import messages
 import sys
+from textblob import TextBlob
+from textblob_aptagger import PerceptronTagger
 sys.setrecursionlimit(10000)
 
 # Create your views here.
@@ -57,6 +59,9 @@ def output(request):
             tokens = nltk.word_tokenize(class_str)
             # dictionary = PyDictionary()
             
+            blob = TextBlob(text_output, pos_tagger=PerceptronTagger())
+            
+            
             # nouns = []
             # verbs = []
             # adjectives = []
@@ -84,9 +89,11 @@ def output(request):
             
             assignments = pos_tag(tokens) # tagset='universal' for ADJ, NOUN, etc.
             
+            assignments_2 = blob.tags
+            
             # pos_tags = []
             pos_words = {}
-            for tuple in assignments:
+            for tuple in assignments_2:
                 word = tuple[0]
                 pos = tuple[1]
                 if pos in pos_words:
@@ -98,7 +105,6 @@ def output(request):
                 
             pos_words['DET'] = DET
             pos_words['P'] = P
-            
             
             grammar = """
             S -> NP VP
