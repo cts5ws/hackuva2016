@@ -193,23 +193,11 @@ def output(request):
     
     
 def get_validity(sentences):
-    validity = {}
-    for sentence in sentences:
-        words = sentence.split()
-        prev_word_loc = words[0]
-        validity[sentence] = 0
-        index = 1
-        while index < len(words):
-            next_word_loc = words[index]
-            bigrams = Bigram.objects.filter(
-                first_word = prev_word_loc,
-                next_word = next_word_loc,
-            )
-            if len(bigrams) != 0:
-                some_text_output += 1
-            prev_word_loc = next_word_loc
-            index += 1
-    
+    bigrams = Bigram.objects.filter(
+        first_word = "campus",
+        next_word = "at"
+    )
+    frequency = bigrams[0].frequency
     
     # validity = {}
     # for sentence in sentences:
