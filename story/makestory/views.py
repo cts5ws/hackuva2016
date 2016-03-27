@@ -59,7 +59,7 @@ def output(request):
             tokens = nltk.word_tokenize(class_str)
             # dictionary = PyDictionary()
             
-            blob = TextBlob(text_output, pos_tagger=PerceptronTagger())
+            blob = TextBlob(class_str, pos_tagger=PerceptronTagger())
             
             
             # nouns = []
@@ -106,6 +106,7 @@ def output(request):
             pos_words['DET'] = DET
             pos_words['P'] = P
             
+
             grammar = """
             S -> NP VP
             PP -> P NP
