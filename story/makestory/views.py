@@ -149,7 +149,7 @@ def output(request):
                 sentences.append(' '.join(sentence))
             
             
-            #sentence_validity = get_validity(sentences)
+            sentence_validity = get_validity(sentences)
             #get_validity(sentences)
             
             # parser = nltk.ChartParser(simple_grammar)
@@ -179,6 +179,7 @@ def get_validity(sentences):
     #    next_word = "at"
     #)
     #frequency = bigrams[0].frequency
+    sentences = sentences[0:10]
     
     validity = {}
     for sentence in sentences:
