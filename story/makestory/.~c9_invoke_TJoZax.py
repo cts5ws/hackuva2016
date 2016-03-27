@@ -12,11 +12,10 @@ from models import Bigram
 import sys
 
 sys.setrecursionlimit(10000)
-first_access = True
 
 # Create your views here.
 def index(request):
-    if first_access:
+    if len(list(Bigram.objects.all())) > 1:
         f = open('../static/rec/w2_.txt', 'r')
         models = []
         for line in f:
@@ -29,7 +28,6 @@ def index(request):
         for model in models:
             model.save()
         f.close()
-        first_access = False
     return render(request, 'makestory/index.html')
     
 def output(request):
