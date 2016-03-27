@@ -169,7 +169,7 @@ def output(request):
                 string = tuple[1]
                 start_letter = string[0].upper()
                 story += start_letter
-                story += line[1:]
+                story += string[1:]
                 story += ". "
             
             caption = 'this is a caption'
