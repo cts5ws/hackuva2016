@@ -108,7 +108,7 @@ def output(request):
             S -> NP VP
             PP -> P NP
             NP -> Det N
-            VP -> V Det N | VP PP
+            VP -> V Det N | V Det N PP
             
             """
             
