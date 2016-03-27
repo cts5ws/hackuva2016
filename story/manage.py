@@ -2,7 +2,7 @@
 import os
 import sys
 from django.core.management.base import BaseCommand
-from models import Bigram
+# from models import Bigram
 
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "story.settings")
