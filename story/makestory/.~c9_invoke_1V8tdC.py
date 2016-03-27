@@ -43,7 +43,7 @@ def output(request):
             
             class_list = result['results'][0]['result']['tag']['classes']
             prob_list = result['results'][0]['result']['tag']['probs']
-            
+            assignment = pos_tag(tokens, tage)
             class_str = ""
             for i in range(0, len(class_list)):
                 class_str += class_list[i] + " " 
@@ -128,7 +128,6 @@ def output(request):
             sentences = []
             for sentence in generate(simple_grammar, n=10):
                 sentences.append(' '.join(sentence))
-                
             
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)

@@ -17,7 +17,7 @@ def output(request):
     if request.method == "POST":
         # Validation of request
         if 'inputURL' in request.POST:
-            # Validation of image url
+            if extension = 'jpg' or extension = 'jpeg' or e
             imageURL = request.POST.get('inputURL')
             image_output = imageURL
             indexOfDot = imageURL.rfind(".")
@@ -122,13 +122,12 @@ def output(request):
                 grammar += 'A ->' + ' | '.join(pos_words['JJ']) + '\n'
                 
             simple_grammar = CFG.fromstring(grammar)
-            # simple_grammar.start()
-            # simple_grammar.productions()
+            #simple_grammar.start()
+            simple_grammar.productions()
             
             sentences = []
             for sentence in generate(simple_grammar, n=10):
                 sentences.append(' '.join(sentence))
-                
             
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)

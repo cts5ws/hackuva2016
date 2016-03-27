@@ -107,7 +107,7 @@ def output(request):
             """
             # N -> 'NN'
             # V -> 'VBZ'
-            # P -> 'PP'
+            grammar +=
             
             
             # adverb is RB
@@ -128,7 +128,6 @@ def output(request):
             sentences = []
             for sentence in generate(simple_grammar, n=10):
                 sentences.append(' '.join(sentence))
-                
             
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)

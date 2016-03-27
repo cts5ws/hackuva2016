@@ -79,7 +79,7 @@ def output(request):
                     
             # Create the grammar
             #P:prepositions, DET:articles, adverbs
-            P = ["on","in","at","since","for","ago","before","to","past","to","until","by","in","at","on","under","below","over","above","into","from","of","on","at"]
+                pos = 
             DET = ["the","a","one","some","few","a few","the few","some"]
             
             assignments = pos_tag(tokens) # tagset='universal' for ADJ, NOUN, etc.
@@ -122,13 +122,12 @@ def output(request):
                 grammar += 'A ->' + ' | '.join(pos_words['JJ']) + '\n'
                 
             simple_grammar = CFG.fromstring(grammar)
-            # simple_grammar.start()
-            # simple_grammar.productions()
+            #simple_grammar.start()
+            simple_grammar.productions()
             
             sentences = []
             for sentence in generate(simple_grammar, n=10):
                 sentences.append(' '.join(sentence))
-                
             
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)

@@ -87,7 +87,7 @@ def output(request):
             pos_tags = []
             pos_words = {}
             for tuple in assignments:
-                word = tuple[0]
+                    pos_words[pos] = []
                 pos = tuple[1]
                 if pos in pos_words:
                     pos_words[pos].append(word)
@@ -128,7 +128,6 @@ def output(request):
             sentences = []
             for sentence in generate(simple_grammar, n=10):
                 sentences.append(' '.join(sentence))
-                
             
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)

@@ -43,7 +43,7 @@ def output(request):
             
             class_list = result['results'][0]['result']['tag']['classes']
             prob_list = result['results'][0]['result']['tag']['probs']
-            
+            nouns = [], verbs = [], adjectives = [],    otherPos = []
             class_str = ""
             for i in range(0, len(class_list)):
                 class_str += class_list[i] + " " 
@@ -122,13 +122,12 @@ def output(request):
                 grammar += 'A ->' + ' | '.join(pos_words['JJ']) + '\n'
                 
             simple_grammar = CFG.fromstring(grammar)
-            # simple_grammar.start()
-            # simple_grammar.productions()
+            #simple_grammar.start()
+            simple_grammar.productions()
             
             sentences = []
             for sentence in generate(simple_grammar, n=10):
                 sentences.append(' '.join(sentence))
-                
             
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)

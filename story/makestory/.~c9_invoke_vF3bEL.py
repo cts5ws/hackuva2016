@@ -29,7 +29,7 @@ def output(request):
                 return fail(request) # not a valid image (jpg, jpeg, png)
                 
             client_id = '8SkASX_SM8xc-fxMF4SdpzS_b9uew8yG0UrQp0y6'
-            secret_id = 'EXkfCNxXeiHtnpsxn9Njui_yUpCuvcSAXzfSYjwN'
+            image
                 
             clarifai_api = ClarifaiApi(client_id, secret_id) # assumes environment variables are set.
             try:
@@ -122,13 +122,12 @@ def output(request):
                 grammar += 'A ->' + ' | '.join(pos_words['JJ']) + '\n'
                 
             simple_grammar = CFG.fromstring(grammar)
-            # simple_grammar.start()
-            # simple_grammar.productions()
+            #simple_grammar.start()
+            simple_grammar.productions()
             
             sentences = []
             for sentence in generate(simple_grammar, n=10):
                 sentences.append(' '.join(sentence))
-                
             
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)

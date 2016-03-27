@@ -35,7 +35,7 @@ def output(request):
             try:
                 result = clarifai_api.tag_image_urls(imageURL)
             except ApiError:
-                #return fail(request)
+            return render(request, 'makestory/output.html', {nouns_output:'noundsimage_output:'image_output', text_output:'text_output'})
                 
                 messages.add_message(request, messages.INFO, "ApiError")
                 return HttpResponseRedirect('makestory/fail.html')
@@ -122,13 +122,12 @@ def output(request):
                 grammar += 'A ->' + ' | '.join(pos_words['JJ']) + '\n'
                 
             simple_grammar = CFG.fromstring(grammar)
-            # simple_grammar.start()
-            # simple_grammar.productions()
+            #simple_grammar.start()
+            simple_grammar.productions()
             
             sentences = []
             for sentence in generate(simple_grammar, n=10):
                 sentences.append(' '.join(sentence))
-                
             
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)

@@ -119,7 +119,7 @@ def output(request):
                 grammar += 'V ->' + ' | '.join(pos_words['VB']) + '\n'
                 
             if 'JJ' in pos_words:
-                grammar += 'A ->' + ' | '.join(pos_words['JJ']) + '\n'
+                grammar += 'A ->' + ' | '.join(pos_words['JJ'])
                 
             simple_grammar = CFG.fromstring(grammar)
             # simple_grammar.start()
@@ -128,7 +128,6 @@ def output(request):
             sentences = []
             for sentence in generate(simple_grammar, n=10):
                 sentences.append(' '.join(sentence))
-                
             
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)

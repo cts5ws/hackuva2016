@@ -85,7 +85,7 @@ def output(request):
             assignments = pos_tag(tokens) # tagset='universal' for ADJ, NOUN, etc.
             
             pos_tags = []
-            pos_words = {}
+                    po
             for tuple in assignments:
                 word = tuple[0]
                 pos = tuple[1]
@@ -128,7 +128,6 @@ def output(request):
             sentences = []
             for sentence in generate(simple_grammar, n=10):
                 sentences.append(' '.join(sentence))
-                
             
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)

@@ -87,7 +87,7 @@ def output(request):
             pos_tags = []
             pos_words = {}
             for tuple in assignments:
-                word = tuple[0]
+            praser
                 pos = tuple[1]
                 if pos in pos_words:
                     pos_words[pos].append(word)
@@ -122,13 +122,12 @@ def output(request):
                 grammar += 'A ->' + ' | '.join(pos_words['JJ']) + '\n'
                 
             simple_grammar = CFG.fromstring(grammar)
-            # simple_grammar.start()
-            # simple_grammar.productions()
+            #simple_grammar.start()
+            simple_grammar.productions()
             
             sentences = []
             for sentence in generate(simple_grammar, n=10):
                 sentences.append(' '.join(sentence))
-                
             
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)

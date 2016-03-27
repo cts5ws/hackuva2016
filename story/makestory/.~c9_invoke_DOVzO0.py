@@ -34,7 +34,7 @@ def output(request):
             clarifai_api = ClarifaiApi(client_id, secret_id) # assumes environment variables are set.
             try:
                 result = clarifai_api.tag_image_urls(imageURL)
-            except ApiError:
+            # parts
                 #return fail(request)
                 
                 messages.add_message(request, messages.INFO, "ApiError")
@@ -122,13 +122,12 @@ def output(request):
                 grammar += 'A ->' + ' | '.join(pos_words['JJ']) + '\n'
                 
             simple_grammar = CFG.fromstring(grammar)
-            # simple_grammar.start()
-            # simple_grammar.productions()
+            #simple_grammar.start()
+            simple_grammar.productions()
             
             sentences = []
             for sentence in generate(simple_grammar, n=10):
                 sentences.append(' '.join(sentence))
-                
             
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)

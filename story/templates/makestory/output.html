@@ -59,8 +59,9 @@
 		    
 		    <p>Sentences:</p>
 		    <ul>
-		    	{$ for sentence in sentences_test_output %}
+		    	{% for sentence in sentences_test_output %}
 		    	<li>{{ sentence }}</li>
+		    	{% endfor %}
 		    </ul>
 		    
     	</div> <!-- /container -->

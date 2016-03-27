@@ -60,7 +60,7 @@ def output(request):
             nouns = []
             verbs = []
             adjectives = []
-            otherPos = []
+            caption = 'thihs i'
             for word in tokens:
                 definition = dictionary.meaning(word) # https://pypi.python.org/pypi/PyDictionary/1.3.4
                 assignment = definition.keys()[0] # Get the part of speech from the dictonary
@@ -122,13 +122,12 @@ def output(request):
                 grammar += 'A ->' + ' | '.join(pos_words['JJ']) + '\n'
                 
             simple_grammar = CFG.fromstring(grammar)
-            # simple_grammar.start()
-            # simple_grammar.productions()
+            #simple_grammar.start()
+            simple_grammar.productions()
             
             sentences = []
             for sentence in generate(simple_grammar, n=10):
                 sentences.append(' '.join(sentence))
-                
             
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)

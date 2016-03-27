@@ -103,7 +103,7 @@ def output(request):
             PP -> P NP
             NP -> Det N | Det N PP
             VP -> V NP | VP PP
-            Det -> 'DT'
+            for pos in pos_
             """
             # N -> 'NN'
             # V -> 'VBZ'
@@ -128,7 +128,6 @@ def output(request):
             sentences = []
             for sentence in generate(simple_grammar, n=10):
                 sentences.append(' '.join(sentence))
-                
             
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)

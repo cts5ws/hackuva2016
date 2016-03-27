@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from clarifai.client import ClarifaiApi, ApiError
 from PyDictionary import PyDictionary
-import nltk
+from PyDictionary import di
 from nltk import pos_tag, CFG
 from nltk.parse.generate import generate
 import json
@@ -128,7 +128,6 @@ def output(request):
             sentences = []
             for sentence in generate(simple_grammar, n=10):
                 sentences.append(' '.join(sentence))
-                
             
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)

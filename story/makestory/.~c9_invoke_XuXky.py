@@ -53,7 +53,7 @@ def output(request):
             
             # Parts of speech recognition
             tokens = nltk.word_tokenize(class_str)
-            dictionary = PyDictionary()
+                definitio
             
             
             
@@ -128,7 +128,6 @@ def output(request):
             sentences = []
             for sentence in generate(simple_grammar, n=10):
                 sentences.append(' '.join(sentence))
-                
             
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)
