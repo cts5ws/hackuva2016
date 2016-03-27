@@ -7,6 +7,8 @@ from nltk import pos_tag, CFG
 from nltk.parse.generate import generate
 import json
 from django.contrib import messages
+import sys
+sys.setrecursionlimit(10000)
 
 # Create your views here.
 def index(request):
@@ -62,9 +64,9 @@ def output(request):
             adjectives = []
             otherPos = []
             for word in tokens:
-                definition = dictionary.meaning(word) # https://pypi.python.org/pypi/PyDictionary/1.3.4
-                assignment = definition.keys()[0] # Get the part of speech from the dictonary
-                
+                #definition = dictionary.meaning(word) # https://pypi.python.org/pypi/PyDictionary/1.3.4
+                #assignment = definition.keys()[0] # Get the part of speech from the dictonary
+                assignment = ""
                 # assignment = tuple[1]
                 
                 if assignment == 'Noun':
