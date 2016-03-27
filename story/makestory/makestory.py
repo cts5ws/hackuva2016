@@ -1,6 +1,6 @@
 from models import Bigram
 
-def readBigrams():
+def read_bigrams():
     f = open('../static/rec/w2_.txt', 'r')
     
     models = []
