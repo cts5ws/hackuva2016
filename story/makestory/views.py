@@ -7,7 +7,7 @@ from nltk import pos_tag, CFG
 from nltk.parse.generate import generate
 import json
 from django.contrib import messages
-import models.Bigram
+from models import Bigram
 
 import sys
 
