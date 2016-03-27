@@ -84,7 +84,7 @@ def output(request):
             
             assignments = pos_tag(tokens) # tagset='universal' for ADJ, NOUN, etc.
             
-            pos_tags = []
+            # pos_tags = []
             pos_words = {}
             for tuple in assignments:
                 word = tuple[0]
@@ -94,7 +94,7 @@ def output(request):
                 else:
                     pos_words[pos] = []
                     pos_words[pos].append("\'" + word + "\'")
-                pos_tags.append(pos)
+                # pos_tags.append(pos)
                 
             pos_words['DET'] = DET
             pos_words['P'] = P
