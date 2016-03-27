@@ -136,8 +136,8 @@ def output(request):
            #  # simple_grammar.productions()
             
             sentences = []
-            #for sentence in generate(simple_grammar, n=10):
-            #    sentences.append(' '.join(sentence))
+            for sentence in generate(simple_grammar, n=10):
+                sentences.append(' '.join(sentence))
             
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)
