@@ -87,7 +87,7 @@ def output(request):
             #P:prepositions, DET:articles, adverbs
             DET = ["'the'","'a'","'some'"]
             # P = ["'in'","'at'","'since'","'for'","'to'","'past'","'to'""'by'","'in'","'at'","'on'","'under'","'below'","'over'","'above'","'into'","'from'","'of'","'on'","'at'"]
-            VB = ["'talks'","'does'","'has'","'cry'", "'fights'", "'traps'", "'bakes'", "'fondles'"]
+            VB = ["'talks'","'does'","'has'","'cries'", "'fights'", "'traps'", "'bakes'", "'fondles'", "'cooks'", "'sees'", "'calls'", "'smells'", "'tastes'", "'hears'"]
             
             
             assignments = pos_tag(tokens) # tagset='universal' for ADJ, NOUN, etc.
