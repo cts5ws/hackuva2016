@@ -165,8 +165,9 @@ def output(request):
             
             story = ""
             for i in range(0, 10):
-                line = sentence_validity[i]
-                start_letter = line[0].upper()
+                tuple = sentence_validity[i]
+                string = tuple[1]
+                start_letter = string[0].upper()
                 story += start_letter
                 story += line[1:]
                 story += ". "
