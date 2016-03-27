@@ -198,7 +198,7 @@ def get_validity(sentences):
             prev_word_loc = next_word_loc
             index += 1
     tuple_list = [(v, k) for k, v in validity.iteritems()]
-    sorted(tuple_list, key=lambda x: x[1])
+    sorted(tuple_list, key=lambda x: x[0], reverse=True)
     return tuple_list
     
 def fail(request):
