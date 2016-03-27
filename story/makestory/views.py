@@ -141,10 +141,10 @@ def output(request):
             
             sentences = []
             sentence_validity = {}
-            for sentence in generate(simple_grammar, depth=5):
+            for sentence in generate(simple_grammar, n=10):
                 sentences.append(' '.join(sentence))
             
-            sentence_validity = get_validity(sentences)
+            #sentence_validity = get_validity(sentences)
             
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)
