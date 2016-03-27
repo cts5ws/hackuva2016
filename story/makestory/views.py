@@ -136,7 +136,7 @@ def output(request):
            #  # simple_grammar.productions()
             
             sentences = []
-            for sentence in generate(simple_grammar, n=10, depth=5):
+            for sentence in generate(simple_grammar, depth=5):
                 sentences.append(' '.join(sentence))
             
             # parser = nltk.ChartParser(simple_grammar)
