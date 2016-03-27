@@ -90,7 +90,7 @@ def output(request):
                 word = tuple[0]
                 pos = tuple[1]
                 if pos in pos_words:
-                    pos_words[pos].append(word)
+                    pos_words[pos].append("\'" + word + "\'")
                 else:
                     pos_words[pos] = []
                 pos_tags.append(pos)
@@ -113,13 +113,13 @@ def output(request):
             # adverb is RB
             
             if 'NN' in pos_words:
-                grammar += 'N ->' + ' | '.join("\'" + pos_words['NN'] + "\'") + '\n'
+                grammar += 'N ->' + ' | '.join(pos_words['NN']) + '\n'
             
             if 'VB' in pos_words:
-                grammar += 'V ->' + ' | '.join("\'" + pos_words['VB'] + "\'") + '\n'
+                grammar += 'V ->' + ' | '.join(pos_words['VB']) + '\n'
                 
             if 'JJ' in pos_words:
-                grammar += 'A ->' + ' | '.join("\'" + pos_words['JJ'] + "\'") + '\n'
+                grammar += 'A ->' + ' | '.join(pos_words['JJ']) + '\n'
                 
             simple_grammar = CFG.fromstring(grammar)
             #simple_grammar.start()
