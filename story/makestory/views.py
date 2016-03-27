@@ -26,10 +26,11 @@ def index(request):
             first = sp[1]
             second = sp[2]
             bigram = Bigram(first_word=first, next_word=second, frequency=freq)
-            try:
-                bigram.save()
-            except:
-                continue
+            bigram.save()
+            # try:
+            #     bigram.save()
+            # except:
+            #     continue
         
         f.close()
     return render(request, 'makestory/index.html')
