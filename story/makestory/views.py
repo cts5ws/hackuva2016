@@ -37,8 +37,7 @@ def output(request):
                 
                 message = _("ApiError")
                 request.user.message_set.create(message = message)
-                
-                return redirect('fail.html')
+                return redirect('fail')
             
             
             class_list = result['results'][0]['result']['tag']['classes']
