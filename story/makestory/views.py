@@ -150,6 +150,8 @@ def output(request):
             
             
             sentence_validity = get_validity(sentences)
+            li = []
+            
             #get_validity(sentences)
             
             # parser = nltk.ChartParser(simple_grammar)
@@ -179,7 +181,7 @@ def get_validity(sentences):
     #    next_word = "at"
     #)
     #frequency = bigrams[0].frequency
-    #sentences = sentences[0:10]
+    sentences = sentences[0:10]
     
     validity = {}
     for sentence in sentences:
@@ -203,7 +205,7 @@ def get_validity(sentences):
             index += 2
     #tuple_list = [(v, k) for k, v in validity.iteritems()]
     #tuple_list = sorted(tuple_list, key=lambda x: x[0], reverse=True)
-    return tuple_list
+    return validity
     
 def fail(request):
     return render(request, 'makestory/fail.html')
