@@ -1,4 +1,4 @@
-from Django.apps import AppConfig
+from django.apps import AppConfig
 
 class makeStoryConfig(AppConfig):
     name = 'story'
