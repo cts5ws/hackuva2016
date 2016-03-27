@@ -16,7 +16,7 @@ sys.setrecursionlimit(10000)
 # Create your views here.
 def index(request):
     if len(list(Bigram.objects.all())) == 0:
-        f = open('../static/res/w2_.txt', 'r')
+        f = open('/static/res/w2_.txt', 'r')
         models = []
         for line in f:
             sp = line.split() # sp[0] = freq, sp[1] = first_word, sp[2] = second_word
