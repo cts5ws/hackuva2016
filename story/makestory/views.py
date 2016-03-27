@@ -34,8 +34,11 @@ def output(request):
                 result = clarifai_api.tag_image_urls(imageURL)
             except ApiError:
                 #return fail(request)
-                error_type = ApiError
-                return redirect('fail.html', {'error_type' : error_type})
+                
+                message = _("ApiError")
+                request.user.message_set.create(message = message)
+                
+                return redirect('fail.html')
             
             
             class_list = result['results'][0]['result']['tag']['classes']
