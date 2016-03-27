@@ -143,7 +143,7 @@ def output(request):
             
             sentences = []
             sentence_validity = {}
-            for sentence in generate(simple_grammar, n=1000):
+            for sentence in generate(simple_grammar, n=10000):
                 sentences.append(' '.join(sentence))
             
             #sentence_validity = get_validity(sentences)
