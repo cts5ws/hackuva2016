@@ -34,7 +34,7 @@ def index(request):
                  bigram.save()
             except:
                  continue
-        transaction.commit()
+        transaction
         f.close()
     return render(request, 'makestory/index.html')
     
