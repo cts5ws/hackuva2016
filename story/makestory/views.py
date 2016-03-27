@@ -1,9 +1,10 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from clarifai.client import ClarifaiApi, ApiError
-import nltk
 from PyDictionary import PyDictionary
-from nltk import pos_tag
+import nltk
+from nltk import pos_tag, CFG
+from nltk.parse.generate import generate
 import json
 from django.contrib import messages
 
@@ -55,7 +56,7 @@ def output(request):
             dictionary = PyDictionary()
             
             
-            #assignment = pos_tag(tokens, tagset='universal') # universal gives us 'ADJ', 'NOUN', etc.
+            
             nouns = []
             verbs = []
             adjectives = []
@@ -74,6 +75,64 @@ def output(request):
                     adjectives.append(word)
                 else:
                     otherPos.append(word)
+                    
+                    
+            # Create the grammar
+            #P:prepositions, DET:articles, adverbs
+            P = ["on","in","at","since","for","ago","before","to","past","to","until","by","in","at","on","under","below","over","above","into","from","of","on","at"]
+            DET = ["the","a","one","some","few","a few","the few","some"]
+            
+            assignments = pos_tag(tokens) # tagset='universal' for ADJ, NOUN, etc.
+            
+            pos_tags = []
+            pos_words = {}
+            for tuple in assignments:
+                word = tuple[0]
+                pos = tuple[1]
+                if pos in pos_words:
+                    pos_words[pos].append(word)
+                else:
+                    pos_words[pos] = []
+                pos_tags.append(pos)
+                
+                
+            
+            
+            grammar = """
+            S -> NP VP
+            PP -> P NP
+            NP -> Det N | Det N PP
+            VP -> V NP | VP PP
+            Det -> 'DT'
+            """
+            # N -> 'NN'
+            # V -> 'VBZ'
+            # P -> 'PP'
+            
+            
+            # adverb is RB
+            
+            if 'NN' in pos_words:
+                grammar += 'N ->' + ' | '.join(pos_words['NN']) + '\n'
+            
+            if 'VB' in pos_words:
+                grammar += 'V ->' + ' | '.join(pos_words['VB']) + '\n'
+                
+            if 'JJ' in pos_words:
+                grammar += 'A ->' + ' | '.join(pos_words['JJ']) + '\n'
+                
+            simple_grammar = CFG.fromstring(grammar)
+            simple_grammar.start()
+            simple_grammar.productions()
+            
+            sentences = []
+            for sentence in generate(simple_grammar, n=10):
+                sentences.append(' '.join(sentence))
+            
+            # parser = nltk.ChartParser(simple_grammar)
+            # tree = parser.parse(pos_tags)
+            
+
 
             caption = 'this is a caption'
             story = 'this is the story'
@@ -87,6 +146,7 @@ def output(request):
                 'imageURL_output': imageURL,
                 'caption_output': caption,
                 'story_output': story,
+                'sentences_test_output', sentences,
                 }
             )
         else:
