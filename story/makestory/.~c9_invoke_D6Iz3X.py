@@ -25,8 +25,8 @@ def index(request):
             # sp = line.split() # sp[0] = freq, sp[1] = first_word, sp[2] = second_word
         instances = [
             models.Bigram(
-                first_word = line.split()[0]
-                next_word = line.split()[1]
+                first_word = line.split()[0],
+                next_word = line.split()[1],
                 frequency = line.split()[2]
             )
             for line in f
