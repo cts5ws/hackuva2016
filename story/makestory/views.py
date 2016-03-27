@@ -129,9 +129,9 @@ def output(request):
                 
             if 'NN' in pos_words:
                 grammar += 'N ->' + ' | '.join(pos_words['NN']) + '\n'
-            
-            if 'VB' in pos_words:
-                grammar += 'V ->' + ' | '.join(pos_words['VB']) + '\n'
+            #change to VB for nltk
+            if 'VBZ' in pos_words:
+                grammar += 'V ->' + ' | '.join(pos_words['VBZ']) + '\n'
             
             
             #if 'JJ' in pos_words:
