@@ -59,6 +59,15 @@
                 <br>
                 &nbsp;&nbsp;&nbsp; {{ grammar_test_output }}
               </p>
+              <p>
+                &nbsp;&nbsp;&nbsp; Unordered sentences:
+                <br>
+                &nbsp;&nbsp;&nbsp;<ul>
+                  {% for sentence in sentences_test_output }}
+                  <li>{{ sentence }}</li>
+                  {% endfor %}
+                </ul>
+              </p>
               <br><br>
             </div>
             

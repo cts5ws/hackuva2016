@@ -176,9 +176,8 @@ def output(request):
                 {
                 'imageURL_output': imageURL,
                 'story_output': story,
-                #'grammar_test_output': simple_grammar,
-                #'sentences_test_output': sentences,
-                #'text_output': sentence_validity,
+                'grammar_test_output': simple_grammar,
+                'sentences_test_output': sentences,
                 }
             )
         else:

@@ -23,11 +23,13 @@
         font-family: 'Raleway', sans-serif;
       }
     </style>
-    <script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
       function changeBackground() {
-        //document.body.style.background = ;
-        background: url('http://bradsknutson.com/wp-content/uploads/2013/04/page-loader.gif') 50% 50% no-repeat rgb(249, 249, 249);
-      }
+        $(window).load(function(){
+          $(".loader").fadeOut("slow");
+        })
+      }  
     </script>
 
   </head>
@@ -177,6 +179,17 @@ body {
 .mastfoot {
   color: #999; /* IE8 proofing */
   color: rgba(255,255,255,.5);
+}
+
+
+.loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('images/page-loader.gif') 50% 50% no-repeat rgb(249,249,249);
 }
 
 
