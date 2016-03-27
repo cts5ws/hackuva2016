@@ -5,6 +5,7 @@ import nltk
 from PyDictionary import PyDictionary
 from nltk import pos_tag
 import json
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -35,9 +36,8 @@ def output(request):
             except ApiError:
                 #return fail(request)
                 
-                message = _("ApiError")
-                request.user.message_set.create(message = message)
-                return redirect('fail')
+                messages.add_message(request, messages.INFO, "ApiError")
+                return HttpResponseRedirect('makestory/fail.html')
             
             
             class_list = result['results'][0]['result']['tag']['classes']
