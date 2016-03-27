@@ -203,3 +203,25 @@ def get_validity(sentences):
     
 def fail(request):
     return render(request, 'makestory/fail.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
