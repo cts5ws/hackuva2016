@@ -7,7 +7,8 @@ from nltk import pos_tag, CFG
 from nltk.parse.generate import generate
 import json
 from django.contrib import messages
-from textblob import TextBlob
+from . import models.Bigram
+
 import sys
 
 sys.setrecursionlimit(10000)
@@ -59,10 +60,6 @@ def output(request):
             tokens = nltk.word_tokenize(class_str)
             # dictionary = PyDictionary()
             
-            
-            blob = TextBlob(class_str)
-            assignments_2 = blob.tags 
-            
             # nouns = []
             # verbs = []
             # adjectives = []
@@ -87,12 +84,13 @@ def output(request):
             #P:prepositions, DET:articles, adverbs
             DET = ["'the'","'a'","'one'","'some'","'few'","'a few'","'the few'","'some'"]
             P = ["'on'","'in'","'at'","'since'","'for'","'ago'","'before'","'to'","'past'","'to'","'until'","'by'","'in'","'at'","'on'","'under'","'below'","'over'","'above'","'into'","'from'","'of'","'on'","'at'"]
+            VB = ["'add'","'allow'","'bake'","'bang'","'call'","'damage'","'drop'","'end'","'escape'","'fasten'","'fix'","'gather'","'grab'","'hang'","'hug'","'imagine'","'itch'","'jump'","'march'","'name'","'notice'","'obey'","'open'","'stay'","'talk'","'walk'","'work'","'yell'","'may'","'might'","'must'","'be'","'being'","'been'","'am'","'are'","'is'","'was'","'were'","'do'","'does'","'did'","'should'","'could'","'would'","'have'","'had'","'has'","'will'","'can'","'shall'","'am'","'are'","'being'","'appear'","'be'","'become'","'feel'","'get'","'grow'","'have'","'is'","'lie'","'look'","'might be'","'prove'","'seem'","'sit'","'smell'","'sound'","'stay'","'taste'","'turn'","'were'"]
             
             assignments = pos_tag(tokens) # tagset='universal' for ADJ, NOUN, etc.
             
             # pos_tags = []
             pos_words = {}
-            for tuple in assignments_2:
+            for tuple in assignments:
                 word = tuple[0]
                 pos = tuple[1]
                 if pos in pos_words:
@@ -130,8 +128,8 @@ def output(request):
             if 'NN' in pos_words:
                 grammar += 'N ->' + ' | '.join(pos_words['NN']) + '\n'
             #change to VB for nltk
-            if 'VBZ' in pos_words:
-                grammar += 'V ->' + ' | '.join(pos_words['VBZ']) + '\n'
+            if 'VB' in pos_words:
+                grammar += 'V ->' + ' | '.join(pos_words['VB']) + '\n'
             
             
             #if 'JJ' in pos_words:
@@ -142,14 +140,17 @@ def output(request):
             # simple_grammar.productions()
             
             sentences = []
+            sentence_validity = {}
             for sentence in generate(simple_grammar, depth=5):
                 sentences.append(' '.join(sentence))
+            
+            sentence_validity = get_validity(sentences)
             
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)
             
 
-
+            
             caption = 'this is a caption'
             story = 'this is the story'
             
@@ -169,6 +170,25 @@ def output(request):
         else:
             return fail(request)
     return fail(request)
+    
+    
+def get_validity(sentences):
+    validity = {}
+    for sentence in sentences:
+        words = sentence.split()
+        prev_word = words[0]
+        validity[sentence] = 0
+        for word in words:
+            bigrams = Bigram.objects.filter(
+                first_word=prev_word,
+                next_word=word
+            )
+            
+            validity[sentence] += bigrams[0].frequency
+    
+    return validity
+    
+    
     
 def fail(request):
     return render(request, 'makestory/fail.html')

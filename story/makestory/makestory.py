@@ -17,3 +17,5 @@ def readBigrams():
     for model in models:
         model.save()
         
+    f.close()
+        
