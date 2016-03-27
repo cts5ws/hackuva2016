@@ -2,7 +2,7 @@ from Django.apps import AppConfig
 from models import Bigram
 
 class makeStoryConfig(AppConfig):
-    name = 'makestory'
+    name = 'story'
     verbose_name = "Story Time"
     def read(self):
         f = open('../static/rec/w2_.txt', 'r')
