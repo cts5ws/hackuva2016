@@ -107,10 +107,12 @@ def output(request):
             grammar = """
             S -> NP VP
             PP -> P NP
-            NP -> Det N | Det N PP
-            VP -> V NP | VP PP
+            NP -> Det N
+            VP -> V Det N | VP PP
             
             """
+            
+            
             # Det -> 'DT'
             # N -> 'NN'
             # V -> 'VBZ'
