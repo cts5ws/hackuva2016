@@ -79,8 +79,8 @@ def output(request):
                     
             # Create the grammar
             #P:prepositions, DET:articles, adverbs
-            P = ["'on'","'in'","'at'","'since'","'for'","'ago'","'before'","'to'","'past'","'to'","'until'","'by'","'in'","'at'","'on'","'under'","'below'","'over'","'above'","'into'","'from'","'of'","'on'","'at'"]
             DET = ["'the'","'a'","'one'","'some'","'few'","'a few'","'the few'","'some'"]
+            P = ["'on'","'in'","'at'","'since'","'for'","'ago'","'before'","'to'","'past'","'to'","'until'","'by'","'in'","'at'","'on'","'under'","'below'","'over'","'above'","'into'","'from'","'of'","'on'","'at'"]
             
             assignments = pos_tag(tokens) # tagset='universal' for ADJ, NOUN, etc.
             
@@ -105,6 +105,7 @@ def output(request):
             PP -> P NP
             NP -> Det N | Det N PP
             VP -> V NP | VP PP
+            
             """
             # Det -> 'DT'
             # N -> 'NN'
@@ -115,28 +116,28 @@ def output(request):
             # adverb is RB
             
             if 'DET' in pos_words:
-                grammar += 'Det ->' + ' | '.join(pos_words['NN']) + '\n'
+                grammar += 'Det ->' + ' | '.join(pos_words['DET']) + '\n'
                 
             if 'P' in pos_words:
-                grammar += 'P ->' + ' | '.join(pos_words['NN']) + '\n'
+                grammar += 'P ->' + ' | '.join(pos_words['P']) + '\n'
                 
             if 'NN' in pos_words:
                 grammar += 'N ->' + ' | '.join(pos_words['NN']) + '\n'
             
             if 'VB' in pos_words:
                 grammar += 'V ->' + ' | '.join(pos_words['VB']) + '\n'
-                
-            if 'JJ' in pos_words:
-                grammar += 'A ->' + ' | '.join(pos_words['JJ']) + '\n'
+            
+            
+            #if 'JJ' in pos_words:
+            #    grammar += 'A ->' + ' | '.join(pos_words['JJ']) + '\n'
                 
             simple_grammar = CFG.fromstring(grammar)
             #  simple_grammar.start()
            #  # simple_grammar.productions()
             
             sentences = []
-            for sentence in generate(simple_grammar, n=10):
-                sentences.append(' '.join(sentence  
-              ))
+            #for sentence in generate(simple_grammar, n=10):
+            #    sentences.append(' '.join(sentence))
             
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)
@@ -148,13 +149,14 @@ def output(request):
             
             return render(request, 'makestory/output.html',
                 {
-                'nouns_output': nouns,
-                'verbs_output': verbs,
-                'adjectives_output': adjectives,
-                'otherPos_output': otherPos,
+                # 'nouns_output': nouns,
+                # 'verbs_output': verbs,
+                # 'adjectives_output': adjectives,
+                # 'otherPos_output': otherPos,
                 'imageURL_output': imageURL,
                 'caption_output': caption,
                 'story_output': story,
+                'grammar_test_output': simple_grammar,
                 'sentences_test_output': sentences,
                 }
             )
