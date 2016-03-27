@@ -39,38 +39,17 @@
               <h1 class="masthead-brand">Here's your story.</h1>
             </div>
           </div>
+          
+          <img src="{{ imageURL_output }}" width="50%">
+          <br><br>
 
           <div class="inner cover" style="padding-top: 0%">
-            <h4 class="cover-heading"></h4>
 
             <div style="font-size: 18px">
-              <span>&quot; {{ caption_output }} &quot;</span>
               <br><br>
               <span>&quot; {{ story_output }} &quot;</span>
               <br><br>
-              
-              <p>{{ text_output }}</p>
-            
-              <span>{{ grammar_test_output }}</span>
-              <ul>
-              	{% for sentence in sentences_test_output %}
-              	<li>{{ sentence }}</li>
-              	{% endfor %}
-              	
-              </ul>
-              
-              <ul>
-                {% for valid in text_output %}
-                <li> {{ valid }}</li>
-                {% endfor %}
-              </ul>
-            </div>
-
-            <br><br>
-
-            <img src="{{ imageURL_output }}" width="50%">
-
-            <br><br>
+            </div
 
             <h3>Another one? Click <a href="/makestory">here</a>.</h3>
             

@@ -172,16 +172,13 @@ def output(request):
                 story += string[1:]
                 story += ". "
             
-            caption = 'this is a caption'
-            
             return render(request, 'makestory/output.html',
                 {
                 'imageURL_output': imageURL,
-                'caption_output': caption,
                 'story_output': story,
-                'grammar_test_output': simple_grammar,
-                'sentences_test_output': sentences,
-                'text_output': sentence_validity,
+                #'grammar_test_output': simple_grammar,
+                #'sentences_test_output': sentences,
+                #'text_output': sentence_validity,
                 }
             )
         else:
