@@ -1,72 +1,232 @@
-{% load staticfiles %}
 <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<html>
-	<head>
-        <meta name="description" content="">
+    <title>Story Time</title>
 
-        <title>StoryTime</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- Bootstrap core, style CSS -->
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="jumbo.css" rel="stylesheet">
 
-        <!-- Bootstrap core JS -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    </head>
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <style>
+      body {
+        font-family: 'Raleway', sans-serif;
+      }
+    </style>
 
-	<title>Storytime</title>
+  </head>
 
-	<body>
-		<div class="container" align="left">
-		    <h1>Here's a story.</h1>
-		    
-		    <p>Image:</p>
-		    <img src="{{ imageURL_output }}" />
-		    
-		    <p>Nouns:</p>
-		    <ul>
-		        {% for noun in nouns_output %}
-		        <li>{{ noun }}</li>
-		        {% endfor %}
-		    </ul>
-		    
-		    <p>Verbs:</p>
-		    <ul>
-		        {% for verb in verbs_output %}
-		        <li>{{ verb }}</li>
-		        {% endfor %}
-		    </ul>
-		    
-		    <p>Adjectives:</p>
-		    <ul>
-		        {% for adj in adjectives_output %}
-		        <li>{{ adj }}</li>
-		        {% endfor %}
-		    </ul>
-		    
-		    <p>Other:</p>
-		    <ul>
-		        {% for other in otherPos_output %}
-		        <li>{{ other }}</li>
-		        {% endfor %}
-		    </ul>
-		    
-		    <p>Caption:</p>
-		    <p>{{ caption_output }}</p>
-		    
-		    <p>Story:</p>
-		    <p>{{ story_output }}</p>
-		    
-		    <p>Grammar:</p>
-		    <p>{{ grammar_test_output }}</p>
-		    
-		    <p>Sentences:</p>
-		    <ul>
-		    	{% for sentence in sentences_test_output %}
-		    	<li>{{ sentence }}</li>
-		    	{% endfor %}
-		    </ul>
-		    
-    	</div> <!-- /container -->
-	</body>
+  <body>
+
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h1 class="masthead-brand">Here's your story.</h1>
+            </div>
+          </div>
+
+          <div class="inner cover" style="padding-top: 0%">
+            <h4 class="cover-heading"></h4>
+
+            <div style="font-size: 18px">
+              <span>&quot; {{ caption_output }} &quot;</span>
+              <span>&quot; {{ story_output }} &quot;</span>
+            
+            
+              <span>{{ grammar_test_output }}</span>
+              <ul>
+              	{% for sentence in sentences_test_output %}
+              	<li>{{ sentence }}</li>
+              	{% endfor %}
+              </ul>
+            </div>
+
+            <br><br>
+
+            <img src="{{ imageURL_output }}" height="80%">
+
+            <br><br>
+
+            <h3>Another one? Click <a href="/makestory">here</a>.</h3>
+            
+          </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              <p>
+                Copyright &copy; 2016. Story Time.
+                <br>
+                Created by <a href="aj7eb@virginia.edu" target="_blank">Arnim</a>, <a href="cts5ws@virginia.edu" target="_blank">Cole</a>, <a href="ng3br@virginia.edu" target="_blank">Nikhil</a>, and <a href="sc5ba@virginia.edu" target="_blank">Srikanth</a>.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>    
+  </body>
+
+  <style type="text/css">
+  /*
+ * Globals
+ */
+
+/* Links */
+a,
+a:focus,
+a:hover {
+  color: #fff;
+}
+
+/* Custom default button */
+.btn-default,
+.btn-default:hover,
+.btn-default:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritence from `body` */
+  background-color: #fff;
+  border: 1px solid #fff;
+}
+
+
+/*
+ * Base structure
+ */
+
+html,
+body {
+  
+  background-color: #333;
+  background: url('http://i.imgur.com/Oly8a7K.jpg') center;
+}
+body {
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+}
+
+/* Extra markup and styles for table-esque vertical and horizontal centering */
+.site-wrapper {
+  display: table;
+  width: 100%;
+  height: 100%; /* For at least Firefox */
+  min-height: 100%;
+  -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.8);
+          box-shadow: inset 0 0 100px rgba(0,0,0,.8);
+}
+.site-wrapper-inner {
+  display: table-cell;
+  vertical-align: top;
+}
+.cover-container {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Padding for spacing */
+.inner {
+  padding: 30px;
+}
+
+
+/*
+ * Header
+ */
+.masthead-brand {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+@media (min-width: 768px) {
+  .masthead-brand {
+    float: center;
+  }
+}
+
+
+/*
+ * Cover
+ */
+
+.cover {
+  padding: 0 20px;
+}
+.cover .btn-lg {
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+/*
+ * Footer
+ */
+
+.mastfoot {
+  color: #999; /* IE8 proofing */
+  color: rgba(255,255,255,.5);
+}
+
+
+/*
+ * Affix and center
+ */
+
+@media (min-width: 768px) {
+  /* Pull out the header and footer */
+  .masthead {
+    top: 0;
+  }
+  .mastfoot {
+    bottom: 0;
+  }
+  /* Start the vertical centering */
+  .site-wrapper-inner {
+    vertical-align: middle;
+  }
+  /* Handle the widths */
+  .masthead,
+  .mastfoot,
+  .cover-container {
+    width: 100%; /* Must be percentage or pixels for horizontal alignment */
+  }
+}
+
+@media (min-width: 992px) {
+  .masthead,
+  .mastfoot,
+  .cover-container {
+    width: 700px;
+  }
+}
+
+/* CUSTOM CSS */
+input {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 2px solid black;
+    width: 20px;
+}
+  </style>
 </html>

@@ -84,7 +84,7 @@ def output(request):
             #P:prepositions, DET:articles, adverbs
             DET = ["'the'","'a'","'one'","'some'","'few'","'a few'","'the few'","'some'"]
             P = ["'on'","'in'","'at'","'since'","'for'","'ago'","'before'","'to'","'past'","'to'","'until'","'by'","'in'","'at'","'on'","'under'","'below'","'over'","'above'","'into'","'from'","'of'","'on'","'at'"]
-            VB = ["'add'","'allow'","'bake'","'bang'","'call'","'damage'","'drop'","'end'","'escape'","'fasten'","'fix'","'gather'","'grab'","'hang'","'hug'","'imagine'","'itch'","'jump'","'march'","'name'","'notice'","'obey'","'open'","'stay'","'talk'","'walk'","'work'","'yell'","'may'","'might'","'must'","'be'","'being'","'been'","'am'","'are'","'is'","'was'","'were'","'do'","'does'","'did'","'should'","'could'","'would'","'have'","'had'","'has'","'will'","'can'","'shall'","'am'","'are'","'being'","'appear'","'be'","'become'","'feel'","'get'","'grow'","'have'","'is'","'lie'","'look'","'might be'","'prove'","'seem'","'sit'","'smell'","'sound'","'stay'","'taste'","'turn'","'were'"]
+            VB = ["'allow'","'call'","'damage'","'end'","'open'","'stay'","'talk'","'walk'","'work'","'yell'","'may'","'might'","'must'","'be'","'being'","'been'","'am'","'are'","'is'","'was'","'were'","'do'","'does'","'did'","'should'","'could'","'would'","'have'","'had'","'has'","'will'","'can'","'shall'","'am'","'are'","'being'","'be'","'become'","'have'","'is'","'look'","'might be'","'prove'","'seem'","'were'"]
             
             assignments = pos_tag(tokens) # tagset='universal' for ADJ, NOUN, etc.
             
@@ -143,7 +143,7 @@ def output(request):
             
             sentences = []
             sentence_validity = {}
-            for sentence in generate(simple_grammar, n=10000):
+            for sentence in generate(simple_grammar, n=100000):
                 sentences.append(' '.join(sentence))
             
             #sentence_validity = get_validity(sentences)
@@ -151,17 +151,11 @@ def output(request):
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)
             
-
-            
             caption = 'this is a caption'
             story = 'this is the story'
             
             return render(request, 'makestory/output.html',
                 {
-                # 'nouns_output': nouns,
-                # 'verbs_output': verbs,
-                # 'adjectives_output': adjectives,
-                # 'otherPos_output': otherPos,
                 'imageURL_output': imageURL,
                 'caption_output': caption,
                 'story_output': story,
