@@ -168,7 +168,8 @@ def output(request):
             
             
             # sentence_validity = get_validity(sentences)
-            get_validity(stenences)
+            some_text_output = 0
+            get_validity(sentences)
             
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)
@@ -205,7 +206,7 @@ def get_validity(sentences):
                 next_word = next_word_loc,
             )
             if len(bigrams) != 0:
-                some_text_output = "ran and returned true somewhere"
+                some_text_output += 1
             prev_word_loc = next_word_loc
             index += 1
     
