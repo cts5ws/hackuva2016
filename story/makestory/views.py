@@ -55,34 +55,32 @@ def output(request):
             
             # Parts of speech recognition
             tokens = nltk.word_tokenize(class_str)
-            dictionary = PyDictionary()
+            # dictionary = PyDictionary()
             
-            
-            
-            nouns = []
-            verbs = []
-            adjectives = []
-            otherPos = []
-            for word in tokens:
-                #definition = dictionary.meaning(word) # https://pypi.python.org/pypi/PyDictionary/1.3.4
-                #assignment = definition.keys()[0] # Get the part of speech from the dictonary
-                assignment = ""
-                # assignment = tuple[1]
+            # nouns = []
+            # verbs = []
+            # adjectives = []
+            # otherPos = []
+            # for word in tokens:
+            #     #definition = dictionary.meaning(word) # https://pypi.python.org/pypi/PyDictionary/1.3.4
+            #     #assignment = definition.keys()[0] # Get the part of speech from the dictonary
+            #     assignment = ""
+            #     # assignment = tuple[1]
                 
-                if assignment == 'Noun':
-                    nouns.append(word)
-                elif assignment == 'Verb':
-                    verbs.append(word)
-                elif assignment == 'Adjective':
-                    adjectives.append(word)
-                else:
-                    otherPos.append(word)
+            #     if assignment == 'Noun':
+            #         nouns.append(word)
+            #     elif assignment == 'Verb':
+            #         verbs.append(word)
+            #     elif assignment == 'Adjective':
+            #         adjectives.append(word)
+            #     else:
+            #         otherPos.append(word)
                     
                     
             # Create the grammar
             #P:prepositions, DET:articles, adverbs
-            P = ["on","in","at","since","for","ago","before","to","past","to","until","by","in","at","on","under","below","over","above","into","from","of","on","at"]
-            DET = ["the","a","one","some","few","a few","the few","some"]
+            P = ["'on'","'in'","'at'","'since'","'for'","'ago'","'before'","'to'","'past'","'to'","'until'","'by'","'in'","'at'","'on'","'under'","'below'","'over'","'above'","'into'","'from'","'of'","'on'","'at'"]
+            DET = ["'the'","'a'","'one'","'some'","'few'","'a few'","'the few'","'some'"]
             
             assignments = pos_tag(tokens) # tagset='universal' for ADJ, NOUN, etc.
             
@@ -95,9 +93,11 @@ def output(request):
                     pos_words[pos].append("\'" + word + "\'")
                 else:
                     pos_words[pos] = []
+                    pos_words[pos].append("\'" + word + "\'")
                 pos_tags.append(pos)
                 
-                
+            pos_words['DET'] = DET
+            pos_words['P'] = P
             
             
             grammar = """
@@ -105,8 +105,8 @@ def output(request):
             PP -> P NP
             NP -> Det N | Det N PP
             VP -> V NP | VP PP
-            Det -> 'DT' | 'word' | word
             """
+            # Det -> 'DT'
             # N -> 'NN'
             # V -> 'VBZ'
             # P -> 'PP'
@@ -114,6 +114,12 @@ def output(request):
             
             # adverb is RB
             
+            if 'DET' in pos_words:
+                grammar += 'Det ->' + ' | '.join(pos_words['NN']) + '\n'
+                
+            if 'P' in pos_words:
+                grammar += 'P ->' + ' | '.join(pos_words['NN']) + '\n'
+                
             if 'NN' in pos_words:
                 grammar += 'N ->' + ' | '.join(pos_words['NN']) + '\n'
             
@@ -124,14 +130,14 @@ def output(request):
                 grammar += 'A ->' + ' | '.join(pos_words['JJ']) + '\n'
                 
             simple_grammar = CFG.fromstring(grammar)
-            #simple_grammar.start()
-            simple_grammar.productions()
+            #  simple_grammar.start()
+           #  # simple_grammar.productions()
             
             sentences = []
             for sentence in generate(simple_grammar, n=10):
-                sentences.append(' '.join(sentence))
-  
-                          
+                sentences.append(' '.join(sentence  
+              ))
+            
             # parser = nltk.ChartParser(simple_grammar)
             # tree = parser.parse(pos_tags)
             
