@@ -1,10 +1,10 @@
 from Django.apps import AppConfig
-from models import Bigram
 
 class makeStoryConfig(AppConfig):
     name = 'story'
     verbose_name = "Story Time"
     def ready(self):
+        Bigram = self.get_model('Bigram')
         f = open('../static/rec/w2_.txt', 'r')
     
         models = []
