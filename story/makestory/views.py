@@ -7,7 +7,6 @@ from nltk import pos_tag, CFG
 from nltk.parse.generate import generate
 import json
 from django.contrib import messages
-from django.db import transaction
 from models import Bigram
 import os.path
 import sys
@@ -16,25 +15,32 @@ import operator
 sys.setrecursionlimit(10000)
 
 # Create your views here.
-@transaction.commit_manually
 def index(request):
     if len(list(Bigram.objects.all())) == 0:
         BASE = os.path.dirname(os.path.abspath(__file__))
         # f = open(os.path.join(BASE, 'w2_.txt'), 'r')
         f = open(os.path.join(BASE, 'output.txt'), 'r')
-        models = []
-        for line in f:
-            sp = line.split() # sp[0] = freq, sp[1] = first_word, sp[2] = second_word
-            freq = int(sp[0])
-            first = sp[1]
-            second = sp[2]
-            bigram = Bigram(first_word=first, next_word=second, frequency=freq)
+        # models = []
+        # for line in f:
+            # sp = line.split() # sp[0] = freq, sp[1] = first_word, sp[2] = second_word
+        instances = [
+            models.Bigram(
+                first_word = line.split()[0]
+                next_word = line.split()sp[1]
+                frequency = line.split()sp[2]
+            )
+            for line in f
+        ]
+        models.Bigram.objects.bulk_create(instances)
+            # freq = int(sp[0])
+            # first = sp[1]
+            # second = sp[2]
+            # bigram = Bigram(first_word=first, next_word=second, frequency=freq)
             #bigram.save()
-            try:
-                 bigram.save()
-            except:
-                 continue
-        transaction.commit()
+            # try:
+            #      bigram.save()
+            # except:
+            #      continue
         f.close()
     return render(request, 'makestory/index.html')
     
