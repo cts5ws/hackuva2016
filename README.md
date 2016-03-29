@@ -23,5 +23,8 @@ We'll be expanding on this project.
 Technical issues:
 - Static files in Django
 
+To Do:
+- Preprocess POS for a dictionary of words
+
 
 Contact: [Srikanth Chelluri](mailto:sc5ba@virginia.edu), [Nikhil Gupta](mailto:ng3br@virginia.edu), [Cole Schafer](mailto:cts5ws@virginia.edu)
